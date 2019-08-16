@@ -1,18 +1,53 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <cart-drawer />
+    <div class="catalog">
+      <catalog-category
+        v-for="(category, key) in catalogData"
+        :key="key"
+        :category-data="category"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+  import { mapState, mapActions } from 'vuex';
+  import { GET_GOODS } from '@/constants/actionTypes';
+  import CatalogCategory from '@/components/Catalog/CatalogCategory.vue';
+  import CartDrawer from '@/components/Cart/CartDrawer.vue';
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld,
-  },
-};
+  export default {
+    name: 'Home',
+    components: { CartDrawer, CatalogCategory },
+    data() {
+      return {
+        notificationVisible: false,
+      };
+    },
+    computed: {
+      ...mapState('catalog', { catalogData: 'data' }),
+    },
+    created() {
+      this[GET_GOODS]();
+    },
+    mounted() {
+      setInterval(() => {
+        this[GET_GOODS]();
+        this.notificationVisible = true;
+      }, 15000);
+    },
+    methods: {
+      ...mapActions('catalog', [GET_GOODS]),
+    },
+  };
 </script>
+
+<style>
+  .catalog {
+    column-count: 2;
+    column-gap: 20px;
+    column-fill: initial;
+    padding: 20px;
+  }
+</style>
