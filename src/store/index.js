@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { SET_EXCHANGE_RATE } from '@/constants/mutationTypes';
+import { SET_EXCHANGE_RATE, SET_NOTIFIER_VISIBILITY } from '@/constants/mutationTypes';
 import { randomNumber } from '@/helpers';
 import Catalog from './catalog';
 import Cart from './cart';
@@ -13,6 +13,7 @@ export default new Vuex.Store({
       current: 0,
       previous: 0,
     },
+    notifierVisible: false,
   },
   getters: {
     getDifference(state) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     [SET_EXCHANGE_RATE](state) {
       Vue.set(state.exchangeRate, 'previous', state.exchangeRate.current);
       Vue.set(state.exchangeRate, 'current', randomNumber(20, 80));
+    },
+    [SET_NOTIFIER_VISIBILITY](state, value) {
+      Vue.set(state, 'notifierVisible', value);
     },
   },
   modules: {

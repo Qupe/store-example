@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <transition name="slide-fade">
+    <transition name="slide-right">
       <div
         v-if="visible"
         class="cart__drawer"
@@ -63,7 +63,7 @@
           cy="21"
           r="1"
         />
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
       </svg>
     </div>
   </div>

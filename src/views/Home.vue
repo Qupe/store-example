@@ -20,11 +20,6 @@
   export default {
     name: 'Home',
     components: { CartDrawer, CatalogCategory },
-    data() {
-      return {
-        notificationVisible: false,
-      };
-    },
     computed: {
       ...mapState('catalog', { catalogData: 'data' }),
     },
@@ -34,7 +29,6 @@
     mounted() {
       setInterval(() => {
         this[GET_GOODS]();
-        this.notificationVisible = true;
       }, 15000);
     },
     methods: {

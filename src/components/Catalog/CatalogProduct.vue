@@ -6,7 +6,7 @@
     <div class="catalog-product__price">
       <span
         v-if="price"
-        :class="catalogProductClass"
+        :class="classList"
       >
         {{ (price * exchangeRate.current) | formatPrice }}
       </span>
@@ -55,7 +55,7 @@
     computed: {
       ...mapState(['exchangeRate']),
       ...mapGetters(['getDifference']),
-      catalogProductClass() {
+      classList() {
         return {
           'catalog-product__price-highlight': true,
           'catalog-product__price-highlight_red': this.getDifference === 'up',
@@ -98,11 +98,11 @@
         padding: 4px 10px;
 
         &_red {
-          background: rgb(245, 108, 108);
+          background-color: rgb(245, 108, 108);
         }
 
         &_green {
-          background: rgb(103, 194, 58);
+          background-color: rgb(103, 194, 58);
         }
       }
     }

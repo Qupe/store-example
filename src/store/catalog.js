@@ -1,5 +1,9 @@
 import Vue from 'vue';
-import { SET_CATALOG_ITEMS, SET_EXCHANGE_RATE } from '@/constants/mutationTypes';
+import {
+  SET_CATALOG_ITEMS,
+  SET_EXCHANGE_RATE,
+  SET_NOTIFIER_VISIBILITY,
+} from '@/constants/mutationTypes';
 import { GET_GOODS } from '@/constants/actionTypes';
 
 export default {
@@ -198,6 +202,7 @@ export default {
   actions: {
     [GET_GOODS]: ({ commit }) => import('../assets/data/data.json').then((response) => {
       commit(SET_EXCHANGE_RATE, null, { root: true });
+      commit(SET_NOTIFIER_VISIBILITY, true, { root: true });
       commit(SET_CATALOG_ITEMS, response.Value.Goods);
     }),
   },
